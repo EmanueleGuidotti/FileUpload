@@ -26,8 +26,11 @@ export class UploadInterceptor implements HttpInterceptor {
         req: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
+        
         /* instanbul ignore else */
         let headers: HttpHeaders = req.headers || new HttpHeaders();
+        const headerSettings: {[name: string]: string | string[]; } = {};
+
         headers = headers.append("Content-Type", "multipart/form-data;");
         const newReq = req.clone({
             headers,
